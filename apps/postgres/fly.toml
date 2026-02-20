@@ -1,0 +1,20 @@
+app = 'billdonner-postgres'
+primary_region = 'ewr'
+
+[build]
+
+[mounts]
+  source = 'pg_data'
+  destination = '/var/lib/postgresql/data'
+
+[[services]]
+  protocol = 'tcp'
+  internal_port = 5432
+
+  [[services.ports]]
+    port = 5432
+
+[[vm]]
+  memory = '256mb'
+  cpu_kind = 'shared'
+  cpus = 1
