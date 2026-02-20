@@ -1,4 +1,4 @@
-app = 'billdonner-postgres'
+app = 'bd-postgres'
 primary_region = 'ewr'
 
 [build]

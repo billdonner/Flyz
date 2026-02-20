@@ -13,8 +13,8 @@
 set -euo pipefail
 
 FLY="$HOME/.fly/bin/flyctl"
-PG_APP="billdonner-postgres"
-BUCKET="billdonner-backups"
+PG_APP="bd-postgres"
+BUCKET="bd-backups"
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 BACKUP_DIR="/tmp/pg-backup-$TIMESTAMP"
 

@@ -13,22 +13,22 @@ servers:
   #
   # - name: "Alities Engine"
   #   type: http
-  #   metrics_endpoint: "https://billdonner-alities-engine.fly.dev/metrics"
+  #   metrics_endpoint: "https://bd-alities-engine.fly.dev/metrics"
   #   poll_every: 15
   #
   # - name: "Nagzerver"
   #   type: http
-  #   metrics_endpoint: "https://billdonner-nagzerver.fly.dev/api/v1/metrics"
+  #   metrics_endpoint: "https://bd-nagzerver.fly.dev/api/v1/metrics"
   #   poll_every: 30
   #
   # - name: "Redis"
   #   type: redis
-  #   host: "billdonner-redis.internal"
+  #   host: "bd-redis.internal"
   #   port: 6379
   #   poll_every: 10
   #
   # - name: "Postgres"
   #   type: postgres
-  #   dsn: "postgresql://postgres:PASSWORD@billdonner-postgres.internal:5432/nagz"
+  #   dsn: "postgresql://postgres:PASSWORD@bd-postgres.internal:5432/nagz"
   #   system_stats: true
   #   poll_every: 15

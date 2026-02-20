@@ -1,4 +1,4 @@
-app = 'billdonner-nagzerver'
+app = 'bd-nagzerver'
 primary_region = 'ewr'
 
 [build]

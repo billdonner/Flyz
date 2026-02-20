@@ -7,8 +7,8 @@
 set -euo pipefail
 
 FLY="$HOME/.fly/bin/flyctl"
-PG_APP="billdonner-postgres"
-BUCKET="billdonner-backups"
+PG_APP="bd-postgres"
+BUCKET="bd-backups"
 
 if [[ $# -lt 1 ]]; then
     echo "Available backups:"

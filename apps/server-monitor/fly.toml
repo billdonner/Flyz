@@ -1,4 +1,4 @@
-app = 'billdonner-server-monitor'
+app = 'bd-server-monitor'
 primary_region = 'ewr'
 
 [build]
