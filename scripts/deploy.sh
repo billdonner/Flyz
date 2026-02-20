@@ -8,12 +8,15 @@ FLYZ_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 FLY="$HOME/.fly/bin/flyctl"
 
 # Map app names to source repos
-declare -A SOURCE_REPOS=(
-    [server-monitor]="$HOME/server-monitor"
-    [nagzerver]="$HOME/nagzerver"
-    [alities-engine]="$HOME/alities-engine"
-    [obo-server]="$HOME/obo-server"
-)
+get_source_repo() {
+    case "$1" in
+        server-monitor)  echo "$HOME/server-monitor" ;;
+        nagzerver)       echo "$HOME/nagzerver" ;;
+        alities-engine)  echo "$HOME/alities-engine" ;;
+        obo-server)      echo "$HOME/obo-server" ;;
+        *)               echo "" ;;
+    esac
+}
 
 deploy_app() {
     local app="$1"
@@ -31,8 +34,9 @@ deploy_app() {
         # Postgres deploys from its own directory
         cd "$app_dir"
         $FLY deploy --config "$fly_toml"
-    elif [[ -n "${SOURCE_REPOS[$app]:-}" ]]; then
-        local src="${SOURCE_REPOS[$app]}"
+    elif [[ -n "$(get_source_repo "$app")" ]]; then
+        local src
+        src="$(get_source_repo "$app")"
         if [[ ! -d "$src" ]]; then
             echo "ERROR: Source repo not found at $src"
             return 1
