@@ -59,6 +59,13 @@ deploy_app() {
             cp "$app_dir/config/"* "$tmpdir/fly-config/"
         fi
 
+        # alities-engine needs studio source bundled for the Docker build
+        if [[ "$app" == "alities-engine" && -d "$HOME/alities-studio" ]]; then
+            echo "Bundling alities-studio for Docker build..."
+            rsync -a --exclude='.git' --exclude='node_modules' --exclude='dist' \
+                  "$HOME/alities-studio/" "$tmpdir/studio/"
+        fi
+
         # Deploy from temp context
         cd "$tmpdir"
         $FLY deploy --config "$fly_toml" --remote-only
