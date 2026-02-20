@@ -18,6 +18,11 @@ servers:
     metrics_endpoint: "https://bd-obo-server.fly.dev/metrics"
     poll_every: 15
 
+  - name: "Alities Engine"
+    type: http
+    metrics_endpoint: "https://bd-alities-engine.fly.dev/health"
+    poll_every: 15
+
   - name: "Postgres"
     type: postgres
     dsn: "postgresql://postgres:P%24%24Ba%23@bd-postgres.internal:5432/nagz"
