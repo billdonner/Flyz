@@ -1,15 +1,11 @@
-# TODO: Fill in once nagzerver is ready to deploy
-# Nagzerver is a Python/uvicorn API server
 FROM python:3.12-slim
 
 WORKDIR /app
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-COPY pyproject.toml .
-RUN uv pip install --system --no-cache -r pyproject.toml
-
 COPY . .
+RUN uv pip install --system --no-cache .
 
 EXPOSE 8080
 
