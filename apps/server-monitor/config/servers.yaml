@@ -1,34 +1,25 @@
 # Server Monitor — Fly.io Configuration
-# Only monitors services reachable from this Fly Machine.
-# Update URLs as services are deployed to Fly.
+# Monitors services reachable from this Fly Machine.
 
 servers:
-  # Self-monitoring (always works)
+  # Self-monitoring
   - name: "Server Monitor"
     type: http
     metrics_endpoint: "http://127.0.0.1:8080/metrics"
     poll_every: 10
 
-  # Uncomment as services are deployed to Fly:
-  #
-  # - name: "Alities Engine"
-  #   type: http
-  #   metrics_endpoint: "https://bd-alities-engine.fly.dev/metrics"
-  #   poll_every: 15
-  #
-  # - name: "Nagzerver"
-  #   type: http
-  #   metrics_endpoint: "https://bd-nagzerver.fly.dev/api/v1/metrics"
-  #   poll_every: 30
-  #
-  # - name: "Redis"
-  #   type: redis
-  #   host: "bd-redis.internal"
-  #   port: 6379
-  #   poll_every: 10
-  #
-  # - name: "Postgres"
-  #   type: postgres
-  #   dsn: "postgresql://postgres:PASSWORD@bd-postgres.internal:5432/nagz"
-  #   system_stats: true
-  #   poll_every: 15
+  - name: "Nagzerver"
+    type: http
+    metrics_endpoint: "https://bd-nagzerver.fly.dev/api/v1/metrics"
+    poll_every: 15
+
+  - name: "OBO Server"
+    type: http
+    metrics_endpoint: "https://bd-obo-server.fly.dev/metrics"
+    poll_every: 15
+
+  - name: "Postgres"
+    type: postgres
+    dsn: "postgresql://postgres:P$$Ba#@bd-postgres.internal:5432/nagz"
+    system_stats: true
+    poll_every: 15
