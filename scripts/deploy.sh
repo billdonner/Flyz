@@ -66,6 +66,13 @@ deploy_app() {
                   "$HOME/alities-studio/" "$tmpdir/studio/"
         fi
 
+        # nagzerver needs nagz-web source bundled for the Docker build
+        if [[ "$app" == "nagzerver" && -d "$HOME/nagz-web" ]]; then
+            echo "Bundling nagz-web for Docker build..."
+            rsync -a --exclude='.git' --exclude='node_modules' --exclude='dist' \
+                  "$HOME/nagz-web/" "$tmpdir/nagz-web/"
+        fi
+
         # Deploy from temp context
         cd "$tmpdir"
         $FLY deploy --config "$fly_toml" --remote-only
