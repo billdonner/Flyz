@@ -5,7 +5,7 @@ COPY nagz-web/package.json nagz-web/package-lock.json ./
 RUN npm ci
 COPY nagz-web/ .
 ENV VITE_API_URL=""
-RUN npm run build
+RUN npx vite build
 
 FROM python:3.12-slim
 
