@@ -20,6 +20,6 @@ servers:
 
   - name: "Postgres"
     type: postgres
-    dsn: "postgresql://postgres:P$$Ba#@bd-postgres.internal:5432/nagz"
+    dsn: "postgresql://postgres:P%24%24Ba%23@bd-postgres.internal:5432/nagz"
     system_stats: true
     poll_every: 15
