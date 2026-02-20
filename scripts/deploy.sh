@@ -12,6 +12,7 @@ declare -A SOURCE_REPOS=(
     [server-monitor]="$HOME/server-monitor"
     [nagzerver]="$HOME/nagzerver"
     [alities-engine]="$HOME/alities-engine"
+    [obo-server]="$HOME/obo-server"
 )
 
 deploy_app() {
