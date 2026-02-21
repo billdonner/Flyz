@@ -23,7 +23,7 @@ servers:
 
   - name: "Alities Engine"
     type: http
-    metrics_endpoint: "https://bd-alities-engine.fly.dev/health"
+    metrics_endpoint: "https://bd-alities-engine.fly.dev/metrics"
     web_url: "https://bd-alities-engine.fly.dev"
     poll_every: 15
 
