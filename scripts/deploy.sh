@@ -59,6 +59,14 @@ deploy_app() {
             cp "$app_dir/config/"* "$tmpdir/fly-config/"
         fi
 
+        # server-monitor co-hosts the advice app
+        if [[ "$app" == "server-monitor" && -d "$HOME/adveyes" ]]; then
+            echo "Bundling adveyes for Docker build..."
+            mkdir -p "$tmpdir/advice_app"
+            rsync -a --exclude='.git' --exclude='.venv' --exclude='__pycache__' \
+                  "$HOME/adveyes/" "$tmpdir/advice_app/"
+        fi
+
         # alities-engine needs studio source bundled for the Docker build
         if [[ "$app" == "alities-engine" && -d "$HOME/alities-studio" ]]; then
             echo "Bundling alities-studio for Docker build..."

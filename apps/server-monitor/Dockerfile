@@ -9,10 +9,16 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 COPY pyproject.toml .
 RUN uv pip install --system --no-cache -r pyproject.toml
 
+# Install anthropic for advice app
+RUN uv pip install --system --no-cache "anthropic>=0.36,<1"
+
 # Copy application code
 COPY web.py .
 COPY collectors/ collectors/
 COPY static/ static/
+
+# Copy advice app (co-hosted sub-application)
+COPY advice_app/ advice_app/
 
 # Copy Fly-specific config (overrides local servers.yaml)
 COPY fly-config/servers.yaml config/servers.yaml

@@ -27,6 +27,12 @@ servers:
     web_url: "https://bd-alities-engine.fly.dev"
     poll_every: 15
 
+  - name: "Advice App"
+    type: http
+    metrics_endpoint: "http://127.0.0.1:8080/advice/metrics"
+    web_url: "https://bd-server-monitor.fly.dev/advice"
+    poll_every: 15
+
   - name: "Postgres"
     type: postgres
     dsn: "postgresql://postgres:P%24%24Ba%23@bd-postgres.internal:5432/nagz"
