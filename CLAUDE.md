@@ -42,6 +42,13 @@ Central repo for all Fly.io deployment configs, scripts, and ops automation.
 ./scripts/status.sh
 ```
 
+### nagzerver bundling
+
+The nagzerver Dockerfile is a multi-stage build that bundles the nagz-web React app.
+`deploy.sh` automatically copies `~/nagz-web` into the build context. The Node stage
+builds the React app with `VITE_API_URL=""` (same-origin), and the output is served
+at `/` by the FastAPI server.
+
 ### alities-engine special steps
 
 alities-engine has a 3-stage Docker build that bundles the alities-studio React app.

@@ -6,21 +6,25 @@ servers:
   - name: "Server Monitor"
     type: http
     metrics_endpoint: "http://127.0.0.1:8080/metrics"
+    web_url: "https://bd-server-monitor.fly.dev"
     poll_every: 10
 
   - name: "Nagzerver"
     type: http
     metrics_endpoint: "https://bd-nagzerver.fly.dev/api/v1/metrics"
+    web_url: "https://bd-nagzerver.fly.dev"
     poll_every: 15
 
   - name: "OBO Server"
     type: http
     metrics_endpoint: "https://bd-obo-server.fly.dev/metrics"
+    web_url: "https://bd-obo-server.fly.dev"
     poll_every: 15
 
   - name: "Alities Engine"
     type: http
     metrics_endpoint: "https://bd-alities-engine.fly.dev/health"
+    web_url: "https://bd-alities-engine.fly.dev"
     poll_every: 15
 
   - name: "Postgres"
