@@ -21,11 +21,7 @@ servers:
     web_url: "https://bd-card-engine.fly.dev"
     poll_every: 15
 
-  - name: "Alities Engine"
-    type: http
-    metrics_endpoint: "https://bd-alities-engine.fly.dev/metrics"
-    web_url: "https://bd-alities-engine.fly.dev"
-    poll_every: 15
+  # Alities Engine retired — replaced by card-engine ingestion pipeline
 
   - name: "Advice App"
     type: http

@@ -16,9 +16,15 @@ Central repo for all Fly.io deployment configs, scripts, and ops automation.
 |-----|----------|-------------|------|---------|
 | server-monitor | bd-server-monitor | ~/server-monitor | 8080 | Python/FastAPI |
 | nagzerver | bd-nagzerver | ~/nagzerver | 8080 | Python/FastAPI |
-| alities-engine | bd-alities-engine | ~/alities-engine | 9847 | Swift 6.0 NIO |
-| obo-server | bd-obo-server | ~/obo-server | 8080 | Python/FastAPI |
+| card-engine | bd-card-engine | ~/card-engine | 8080 | Python/FastAPI |
 | postgres | bd-postgres | (self-contained) | 5432 | PostgreSQL 16 |
+
+### Retired Apps
+
+| App | Fly Name | Replaced By |
+|-----|----------|-------------|
+| ~~alities-engine~~ | ~~bd-alities-engine~~ | card-engine |
+| ~~obo-server~~ | ~~bd-obo-server~~ | card-engine |
 
 ## Public URLs
 
@@ -26,8 +32,7 @@ Central repo for all Fly.io deployment configs, scripts, and ops automation.
 |-----|-----|
 | server-monitor | https://bd-server-monitor.fly.dev |
 | nagzerver | https://bd-nagzerver.fly.dev |
-| alities-engine | https://bd-alities-engine.fly.dev |
-| obo-server | https://bd-obo-server.fly.dev |
+| card-engine | https://bd-card-engine.fly.dev |
 
 ## Deploying
 
@@ -49,20 +54,13 @@ The nagzerver Dockerfile is a multi-stage build that bundles the nagz-web React 
 builds the React app with `VITE_API_URL=""` (same-origin), and the output is served
 at `/` by the FastAPI server.
 
-### alities-engine special steps
+### card-engine
 
-alities-engine has a 3-stage Docker build that bundles the alities-studio React app.
-**Do NOT use `deploy.sh`** — deploy from the source repo directly:
+card-engine has its own `fly.toml` and `Dockerfile` in `~/card-engine/`. Deploy directly:
 
 ```bash
-cd ~/alities-engine
-cp -r ~/alities-studio studio/
-rm -rf studio/.git studio/node_modules
-~/.fly/bin/flyctl deploy --yes
+cd ~/card-engine && fly deploy
 ```
-
-The `--yes` flag is required for non-interactive deployment.
-See `apps/alities-engine/README.md` for full details including DB schema setup.
 
 ## PostgreSQL
 
@@ -71,23 +69,9 @@ Shared Postgres instance at `bd-postgres` serves all apps via internal networkin
 | Database | User | App |
 |----------|------|-----|
 | nagz | nagz_user | nagzerver |
-| obo | obo_user | obo-server |
-| alities | alities_user | alities-engine |
+| card_engine | (via CE_DATABASE_URL secret) | card-engine |
 
 Internal hostname: `bd-postgres.internal:5432`
-
-### Connecting from apps
-
-Apps connect via Fly.io internal DNS. Set these secrets on each app:
-
-```bash
-flyctl secrets set -a bd-alities-engine \
-  DB_HOST=bd-postgres.internal \
-  DB_PORT=5432 \
-  DB_USER=alities_user \
-  DB_PASSWORD=alities_pass \
-  DB_NAME=alities
-```
 
 ### Direct access via proxy
 
@@ -116,8 +100,6 @@ Dumps are stored in Tigris object storage bucket `bd-backups`.
 - Source repos cloned at standard paths (~/server-monitor, ~/nagzerver, etc.)
 
 ## Troubleshooting
-
-See `apps/alities-engine/README.md` "Lessons Learned" section for Swift/Fly.io deployment gotchas.
 
 Common issues:
 - **Volume mismatch:** If fly.toml removes `[mounts]` but machine has a volume, destroy the machine first: `flyctl machine destroy <id> --force -a <app>`
