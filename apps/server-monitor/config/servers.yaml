@@ -15,6 +15,12 @@ servers:
     web_url: "https://bd-nagzerver.fly.dev"
     poll_every: 15
 
+  - name: "card-engine"
+    type: http
+    metrics_endpoint: "https://bd-card-engine.fly.dev/metrics"
+    web_url: "https://bd-card-engine.fly.dev"
+    poll_every: 15
+
   - name: "OBO Server"
     type: http
     metrics_endpoint: "https://bd-obo-server.fly.dev/metrics"
