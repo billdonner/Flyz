@@ -13,7 +13,6 @@ get_source_repo() {
         server-monitor)  echo "$HOME/server-monitor" ;;
         nagzerver)       echo "$HOME/nagzerver" ;;
         alities-engine)  echo "$HOME/alities-engine" ;;
-        obo-server)      echo "$HOME/obo-server" ;;
         card-engine)     echo "$HOME/card-engine" ;;
         *)               echo "" ;;
     esac

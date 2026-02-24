@@ -21,12 +21,6 @@ servers:
     web_url: "https://bd-card-engine.fly.dev"
     poll_every: 15
 
-  - name: "OBO Server"
-    type: http
-    metrics_endpoint: "https://bd-obo-server.fly.dev/metrics"
-    web_url: "https://bd-obo-server.fly.dev"
-    poll_every: 15
-
   - name: "Alities Engine"
     type: http
     metrics_endpoint: "https://bd-alities-engine.fly.dev/metrics"
