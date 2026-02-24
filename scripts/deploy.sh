@@ -14,6 +14,7 @@ get_source_repo() {
         nagzerver)       echo "$HOME/nagzerver" ;;
         alities-engine)  echo "$HOME/alities-engine" ;;
         obo-server)      echo "$HOME/obo-server" ;;
+        card-engine)     echo "$HOME/card-engine" ;;
         *)               echo "" ;;
     esac
 }
