@@ -15,10 +15,10 @@ servers:
     web_url: "https://bd-nagzerver.fly.dev"
     poll_every: 15
 
-  - name: "card-engine"
+  - name: "Cardzerver"
     type: http
-    metrics_endpoint: "https://bd-card-engine.fly.dev/metrics"
-    web_url: "https://bd-card-engine.fly.dev"
+    metrics_endpoint: "https://bd-cardzerver.fly.dev/metrics"
+    web_url: "https://bd-cardzerver.fly.dev"
     poll_every: 15
 
   # Alities Engine retired — replaced by card-engine ingestion pipeline
@@ -27,6 +27,11 @@ servers:
     type: http
     metrics_endpoint: "http://127.0.0.1:8080/advice/metrics"
     web_url: "https://bd-server-monitor.fly.dev/advice"
+    poll_every: 15
+
+  - name: "Redis (Nagz)"
+    type: redis
+    url: "redis://default:58b132487e1541e3aa3e478f4bd9e552@fly-nagz-redis.upstash.io:6379"
     poll_every: 15
 
   - name: "Postgres"
