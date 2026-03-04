@@ -81,6 +81,13 @@ deploy_app() {
                   "$HOME/nagz-web/" "$tmpdir/nagz-web/"
         fi
 
+        # card-engine needs cardz-studio source bundled for the Docker build
+        if [[ "$app" == "card-engine" && -d "$HOME/cardz-studio" ]]; then
+            echo "Bundling cardz-studio for Docker build..."
+            rsync -a --exclude='.git' --exclude='node_modules' --exclude='dist' \
+                  "$HOME/cardz-studio/" "$tmpdir/cardz-studio/"
+        fi
+
         # Deploy from temp context
         cd "$tmpdir"
         $FLY deploy --config "$fly_toml" --remote-only
